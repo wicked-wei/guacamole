@@ -427,7 +427,7 @@ sleep 1 | echo -e "\nCopying Guacamole JDBC Extension to Extensions Dir...\n" | 
 cp -v extension/mysql/guacamole-auth-jdbc-mysql-${GUACA_VER}.jar ${LIB_DIR}extensions/ | tee -a $logfile || exit 1
 
 sleep 1 | echo -e "\nCopying Guacamole DUO Extension to Extensions Dir...\n" | pv -qL 25; echo -e "\nCopying Guacamole DUO Extension to Extensions Dir...\n" >> $logfile  2>&1
-cp -v extension/mysql/guacamole-auth-duo-mysql-${GUACA_VER}.jar ${LIB_DIR}extensions/ | tee -a $logfile || exit 1
+cp -v extension/guacamole-auth-duo-${GUACA_VER}.jar ${LIB_DIR}extensions/ | tee -a $logfile || exit 1
 
 sleep 1 | echo -e "\nCopying MySQL Connector to Lib Dir...\n" | pv -qL 25; echo -e "\nCopying MySQL Connector to Lib Dir...\n" >> $logfile  2>&1
 cp -v mysql-connector-java-${MYSQL_CONNECTOR_VER}/mysql-connector-java-${MYSQL_CONNECTOR_VER}-bin.jar ${LIB_DIR}/lib/ | tee -a $logfile || exit 1
