@@ -19,7 +19,7 @@ yum install -y wget
 ```
 2. Let's download the script using Wget :
 ```sh
-wget https://github.com/ROBERTPASCAL/guacamole/archive/release-9.14.tar.gz
+wget https://github.com/ROBERTPASCAL/guacamole/releases/download/release-9.14/guacamole-install-script.sh
 ```
 3. decompress the tar file 
 ```sh
