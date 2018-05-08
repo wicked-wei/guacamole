@@ -13,6 +13,19 @@ Task of this script.
 * Setting Tomcat Server
 * Generates a Java KeyStore for SSL Support
 
-Download this link :
-
-https://github.com/ROBERTPASCAL/guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+1. Assuming you're logged in as root, type in the following to install Wget :
+```bash
+yum install -y wget
+```
+2. Let's download the script using Wget :
+```sh
+wget https://github.com/ROBERTPASCAL/guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+```
+3. Now let's make sure we can execute the script :
+```sh
+chmod +x guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+```
+4. Execute the script :)
+```sh
+./guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+```
