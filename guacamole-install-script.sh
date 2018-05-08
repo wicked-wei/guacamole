@@ -188,8 +188,8 @@ setenforce 0
 sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
 systemctl disable kdump.service
 systemctl stop kdump.service
-echo -e "${Red}Service kdump disable and stop${Reset}"\n
-echo -e "${Red}SELINUX status : ${getenforce}${Reset}"\n
+echo -e "Service kdump must be disabled :${Red} ${systemctl is-enabled kdump}${Reset}"\n
+echo -e "SELINUX status :${Red} ${getenforce}${Reset}"\n
 "
 menu () {                                                                      
 echo -e "                         Installation Menu\n         ${Bold}Guacamole Remote Desktop Gateway ${GUACA_VER}\n" && tput sgr0
