@@ -25,7 +25,7 @@ wget https://github.com/ROBERTPASCAL/guacamole/archive/guacamole14.tar.gz
 3. decompress the tar file 
 ```sh
 tar xvf guacamole14.tar.gz
-cd guacamole
+cd guacamole-guacamole14
 ```
 3. Now let's make sure we can execute the script :
 ```sh
