@@ -43,3 +43,4 @@ you can change it with this command :
 setenforce 0
 sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
 ```
+h2 Abig hug to the creator of that script : correo@nacimientohernan.com.ar
