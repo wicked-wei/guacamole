@@ -1,4 +1,4 @@
-# guacamole-0.9.14-script-install-Centos-7
+# guacamole 0.9.14 script install CentOs7
 Script for installing Guacamole 0.9.14 on Centos 7 with MySql and Tomcat. Easy just follow the instructions :)
 
 This script work in a clean CentOs 6/7 installation and install Guacamole 0.9.14 version for a local users authentication.
@@ -43,4 +43,4 @@ you can change it with this command :
 setenforce 0
 sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
 ```
-*A big hug to the creator of that script : correo@nacimientohernan.com.ar*
+**A big hug to the creator of that script : correo@nacimientohernan.com.ar**
