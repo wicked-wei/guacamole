@@ -14,19 +14,19 @@ Task of this script.
 * Generates a Java KeyStore for SSL Support
 
 1. Assuming you're logged in as root, type in the following to install Wget :
-```bash
+```
 yum install -y wget
 ```
 2. Let's download the script using Wget :
-```sh
+```
 wget -q https://github.com/ROBERTPASCAL/guacamole/releases/download/release-9.14/guacamole-install-script.sh
 ```
 4. Now let's make sure we can execute the script :
-```shell
+```
 chmod +x guacamole-install-script.sh
 ```
 5. Execute the script :)
-```sh
+```
 ./guacamole-install-script.sh
 ```
 **A big hug to the creator of that script : correo@nacimientohernan.com.ar**
