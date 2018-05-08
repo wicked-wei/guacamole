@@ -19,13 +19,13 @@ yum install -y wget
 ```
 2. Let's download the script using Wget :
 ```sh
-wget https://github.com/ROBERTPASCAL/guacamole-0.9.14-script-install-Centos-7/archive/0.9.14-test.tar.gz
+wget https://github.com/ROBERTPASCAL/guacamole/archive/guacamole14.tar.gz
 ```
 
 3. decompress the tar file 
 ```sh
-tar xvf 0.9.14-test.tar.gz
-cd guacamole-0.9.14-script-install-Centos-7
+tar xvf guacamole14.tar.gz
+cd guacamole
 ```
 3. Now let's make sure we can execute the script :
 ```sh
