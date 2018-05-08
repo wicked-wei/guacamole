@@ -1,9 +1,9 @@
 #!/bin/env bash
 ##############################################################
 # This script was created by Hernan Dario Nacimiento based on:
-#  http://guacamole.incubator.apache.org/releases/0.9.13-incubating/
-#  http://guacamole.incubator.apache.org/doc/0.9.13-incubating/gug/
-#  http://guacamole.incubator.apache.org/doc/0.9.13-incubating/gug/administration.html
+#  http://guacamole.incubator.apache.org/releases/0.9.14/
+#  http://guacamole.incubator.apache.org/doc/0.9.14/gug/
+#  http://guacamole.incubator.apache.org/doc/0.9.14/gug/administration.html
 #  http://nginx.org/en/docs/http/configuring_https_servers.html
 #  http://nginx.org/en/docs/http/ngx_http_spdy_module.html
 #  https://wiki.centos.org/AdditionalResources/Repositories
@@ -24,10 +24,10 @@
 #####    VARIABLES    ####
 ##########################
 SCRIPT=`basename ${BASH_SOURCE[0]}` #Script File Name
-GUACA_VER="0.9.13-incubating"
+GUACA_VER="0.9.14"
 MYSQL_CONNECTOR_VER="5.1.44"
 LIBJPEG_VER="1.5.2"
-SCRIPT_BUILD="2"
+SCRIPT_BUILD="3"
 SCRIPT_VERSION="${GUACA_VER} Build ${SCRIPT_BUILD}"
 SERVER_HOSTNAME="localhost"
 INSTALL_DIR="/usr/local/src/guacamole/${GUACA_VER}/"
@@ -151,6 +151,9 @@ while getopts a:b:c:d:e:p:l:sihv FLAG; do
       ;;
   esac
 done
+systemctl disable kdump.service
+systemctl stop kdump.service
+echo -e "${Red}Service kdump disable and stop${Reset}"\\n
 
 ##########################
 #####      MENU      #####
