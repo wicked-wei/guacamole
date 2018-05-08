@@ -46,6 +46,7 @@ GUACA_SERVER="guacamole-server-${GUACA_VER}" #Source
 #GUACA_CLIENT="guacamole-client-${GUACA_VER}" #Source
 GUACA_CLIENT="guacamole-${GUACA_VER}" #Binary
 GUACA_JDBC="guacamole-auth-jdbc-${GUACA_VER}" #Extension
+GUACA_DUO="guacamole-auth-duo-${GUACA_VER}" #Extension
 LIBJPEG_URL="http://sourceforge.net/projects/libjpeg-turbo/files/${LIBJPEG_VER}/"
 #LIBJPEG_TURBO="libjpeg-turbo-${LIBJPEG_VER}" #Dependency source
 LIBJPEG_TURBO="libjpeg-turbo-official-${LIBJPEG_VER}" #Dependency rpm
@@ -361,6 +362,7 @@ wget --progress=bar:force ${GUACA_URL}source/${GUACA_SERVER}.tar.gz 2>&1 | progr
 #wget --progress=bar:force ${GUACA_URL}source/${GUACA_CLIENT}.tar.gz 2>&1 | progressfilt
 wget --progress=bar:force ${GUACA_URL}binary/${GUACA_CLIENT}.war -O ${INSTALL_DIR}client/guacamole.war 2>&1 | progressfilt
 wget --progress=bar:force ${GUACA_URL}extensions/${GUACA_JDBC}.tar.gz 2>&1 | progressfilt
+wget --progress=bar:force ${GUACA_URL}extensions/${GUACA_DUO}.tar.gz 2>&1 | progressfilt
 wget --progress=bar:force ${MYSQ_CONNECTOR_URL}${MYSQL_CONNECTOR}.tar.gz 2>&1 | progressfilt
 
 sleep 1 | echo -e "\nDerompessing Guacamole Server Source...\n" | pv -qL 25; echo -e "\nDerompessing Guacamole Server Source...\n" >> $logfile  2>&1
@@ -374,6 +376,10 @@ mv ${GUACA_SERVER} server | tee -a $logfile
 sleep 1 | echo -e "\nDecrompressing Guacamole JDBC Extension...\n" | pv -qL 25; echo -e "\nDecrompressing Guacamole JDBC Extension...\n" >> $logfile  2>&1
 pv ${GUACA_JDBC}.tar.gz | tar xzf - | tee -a $logfile && rm -f ${GUACA_JDBC}.tar.gz | tee -a $logfile
 mv ${GUACA_JDBC} extension | tee -a $logfile
+
+sleep 1 | echo -e "\nDecrompressing Guacamole DUO Extension...\n" | pv -qL 25; echo -e "\nDecrompressing Guacamole DUO Extension...\n" >> $logfile  2>&1
+pv ${GUACA_DUO}.tar.gz | tar xzf - | tee -a $logfile && rm -f ${GUACA_DUO}.tar.gz | tee -a $logfile
+mv ${GUACA_DUO} extension | tee -a $logfile
 
 sleep 1 | echo -e "\nDecompressing MySQL Connector...\n" | pv -qL 25; echo -e "\nDecompressing MySQL Connector...\n" >> $logfile  2>&1
 pv ${MYSQL_CONNECTOR}.tar.gz | tar xzf - | tee -a $logfile && rm -f ${MYSQL_CONNECTOR}.tar.gz | tee -a $logfile
@@ -419,6 +425,9 @@ ln -vfs /usr/local/lib/freerdp/guac* /usr/lib${ARCH}/freerdp | tee -a $logfile |
 
 sleep 1 | echo -e "\nCopying Guacamole JDBC Extension to Extensions Dir...\n" | pv -qL 25; echo -e "\nCopying Guacamole JDBC Extension to Extensions Dir...\n" >> $logfile  2>&1
 cp -v extension/mysql/guacamole-auth-jdbc-mysql-${GUACA_VER}.jar ${LIB_DIR}extensions/ | tee -a $logfile || exit 1
+
+sleep 1 | echo -e "\nCopying Guacamole DUO Extension to Extensions Dir...\n" | pv -qL 25; echo -e "\nCopying Guacamole DUO Extension to Extensions Dir...\n" >> $logfile  2>&1
+cp -v extension/mysql/guacamole-auth-duo-mysql-${GUACA_VER}.jar ${LIB_DIR}extensions/ | tee -a $logfile || exit 1
 
 sleep 1 | echo -e "\nCopying MySQL Connector to Lib Dir...\n" | pv -qL 25; echo -e "\nCopying MySQL Connector to Lib Dir...\n" >> $logfile  2>&1
 cp -v mysql-connector-java-${MYSQL_CONNECTOR_VER}/mysql-connector-java-${MYSQL_CONNECTOR_VER}-bin.jar ${LIB_DIR}/lib/ | tee -a $logfile || exit 1
