@@ -151,9 +151,7 @@ while getopts a:b:c:d:e:p:l:sihv FLAG; do
       ;;
   esac
 done
-systemctl disable kdump.service
-systemctl stop kdump.service
-echo -e "${Red}Service kdump disable and stop${Reset}"\\n
+
 
 ##########################
 #####      MENU      #####
@@ -185,6 +183,13 @@ echo -e "
                ${White}:yNMMMMMMNmdhhyyyyyyyhhdmNNMMMMMNy:               
                  ${White}':sdNNMMMMMMMMMMMMMMMMMMMNNds:'                 
                      ${White}'-/+syhdmNNNNNNmdhyo/-'                     
+
+setenforce 0
+sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
+systemctl disable kdump.service
+systemctl stop kdump.service
+echo -e "${Red}Service kdump disable and stop${Reset}"\n
+echo -e "${Red}SELINUX status : ${getenforce}${Reset}"\n
 "
 menu () {                                                                      
 echo -e "                         Installation Menu\n         ${Bold}Guacamole Remote Desktop Gateway ${GUACA_VER}\n" && tput sgr0
