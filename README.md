@@ -29,4 +29,4 @@ chmod +x guacamole-install-script.sh
 ```
 ./guacamole-install-script.sh
 ```
-**A big hug to the creator of that script : correo@nacimientohernan.com.ar**
+**A big hug to the creator of that script : Hernan Dario Nacimiento correo@nacimientohernan.com.ar**
