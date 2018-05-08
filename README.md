@@ -19,19 +19,27 @@ yum install -y wget
 ```
 2. Let's download the script using Wget :
 ```sh
-wget https://github.com/ROBERTPASCAL/guacamole/archive/guacamole14.tar.gz
+wget https://github.com/ROBERTPASCAL/guacamole/archive/release-9.14.tar.gz
 ```
-
 3. decompress the tar file 
 ```sh
-tar xvf guacamole14.tar.gz
-cd guacamole-guacamole14
+tar xvf release-9.14.tar.gz
+cd guacamole-release-9.14
 ```
-3. Now let's make sure we can execute the script :
+4. Now let's make sure we can execute the script :
 ```sh
 chmod +x guacamole-install-script.sh
 ```
-4. Execute the script :)
+5. Execute the script :)
 ```sh
 ./guacamole-install-script.sh
+```
+6. check with getenforce the level of selinux. It's must be permissive :
+```sh
+getenforce
+```
+you can change it with this command :
+```sh
+setenforce 0
+sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
 ```
