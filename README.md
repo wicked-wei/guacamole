@@ -23,9 +23,9 @@ wget https://github.com/ROBERTPASCAL/guacamole-0.9.14-script-install-Centos-7/bl
 ```
 3. Now let's make sure we can execute the script :
 ```sh
-chmod +x guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+chmod +x guacamole-install-script.sh
 ```
 4. Execute the script :)
 ```sh
-./guacamole-0.9.14-script-install-Centos-7/blob/master/guacamole-install-script.sh
+./guacamole-install-script.sh
 ```
