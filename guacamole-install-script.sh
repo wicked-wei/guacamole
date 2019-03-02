@@ -24,7 +24,7 @@
 #####    VARIABLES    ####
 ##########################
 SCRIPT=`basename ${BASH_SOURCE[0]}` #Script File Name
-GUACA_VER="0.9.14"
+GUACA_VER="1.0.0"
 MYSQL_CONNECTOR_VER="5.1.44"
 LIBJPEG_VER="1.5.2"
 SCRIPT_BUILD="3"
@@ -41,7 +41,7 @@ MYSQL_CONNECTOR="mysql-connector-java-${MYSQL_CONNECTOR_VER}"
 MYSQL_PORT="3306"
 GUACA_PORT="4822"
 GUACA_CONF="guacamole.properties"
-GUACA_URL="http://sourceforge.net/projects/guacamole/files/current/"
+GUACA_URL="http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/${GUACA_VER}/"
 GUACA_SERVER="guacamole-server-${GUACA_VER}" #Source
 #GUACA_CLIENT="guacamole-client-${GUACA_VER}" #Source
 GUACA_CLIENT="guacamole-${GUACA_VER}" #Binary
@@ -130,7 +130,7 @@ while getopts a:b:c:d:e:p:l:sihv FLAG; do
       INSTALL_NGINX=$OPTARG
       if [ $INSTALL_MODE != "silent" ]; then INSTALL_MODE="proxy"; fi
       ;;
-    l)  #set option "l"      
+    l)  #set option "l"
       while IFS=":" read -r str1 str2; do LETSENCRYPT_CERT="yes"; if [[ $str1 = *"@"* ]]; then EMAIL_NAME=$str1; DOMAIN_NAME=$str2; else EMAIL_NAME=$str2; DOMAIN_NAME=$str1; fi; done < <(echo $OPTARG)
       ;;
     s)  #set option "s"
@@ -159,30 +159,30 @@ done
 
 clear
 echo -e "
-                                                                 
-                                                                 
-                                                ${Yellow}'.'              
-                            ${Green}'.:///:-.....'     ${Yellow}-yyys/-           
-                     ${Green}.://///++++++++++++++/-  ${Yellow}.yhhhhhys/'        
-                  ${Green}'.:++++++++++++++++++++++: ${Yellow}'yhhhhhhhhy-        
-          ${White}.+y' ${Green}'://++++++++++++++++++++++++' ${Yellow}':yhhhhyo:'         
-        ${White}-yNd. ${Green}'/+++++++++++++++++++++++++++//' ${Yellow}.+yo:' ${White}'::        
-       ${White}oNMh' ${Green}./++++++++++++++++++++++++++++++/:' '''' ${White}'mMh.      
-      ${White}-MMM:  ${Green}/+++++++++++++++++++++++++++++++++-.:/+:  ${White}yMMs      
-      ${White}-MMMs  ${Green}./++++++++++++++++++++++++++++++++++++/' ${White}.mMMy      
-      ${White}'NMMMy. ${Green}'-/+++++++++++++++++++++++++++++++/:.  ${White}:dMMMo      
-       ${White}+MMMMNy:' ${Green}'.:///++++++++++++++++++++//:-.' ${White}./hMMMMN'      
-       ${White}-MMMMMMMmy+-.${Green}''''.---::::::::::--..''''${White}.:ohNMMMMMMy       
-        ${White}sNMMMMMMMMMmdhs+/:${Green}--..........--${White}:/oyhmNMMMMMMMMMd-       
-         ${White}.+dNMMMMMMMMMMMMMMNNmmmmmmmNNNMMMMMMMMMMMMMMmy:'        
-            ${White}./sdNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmho:'           
-          ${White}'     .:+shmmNNMMMMMMMMMMMMMMMMNNmdyo/-'               
-          ${White}.o:.       '.-::/+ossssssso++/:-.'       '-/'          
-           ${White}.ymh+-.'                           ''./ydy.           
-             ${White}/dMMNdyo/-.''''         ''''.-:+shmMNh:             
-               ${White}:yNMMMMMMNmdhhyyyyyyyhhdmNNMMMMMNy:               
-                 ${White}':sdNNMMMMMMMMMMMMMMMMMMMNNds:'                 
-                     ${White}'-/+syhdmNNNNNNmdhyo/-'                     
+
+
+                                                ${Yellow}'.'
+                            ${Green}'.:///:-.....'     ${Yellow}-yyys/-
+                     ${Green}.://///++++++++++++++/-  ${Yellow}.yhhhhhys/'
+                  ${Green}'.:++++++++++++++++++++++: ${Yellow}'yhhhhhhhhy-
+          ${White}.+y' ${Green}'://++++++++++++++++++++++++' ${Yellow}':yhhhhyo:'
+        ${White}-yNd. ${Green}'/+++++++++++++++++++++++++++//' ${Yellow}.+yo:' ${White}'::
+       ${White}oNMh' ${Green}./++++++++++++++++++++++++++++++/:' '''' ${White}'mMh.
+      ${White}-MMM:  ${Green}/+++++++++++++++++++++++++++++++++-.:/+:  ${White}yMMs
+      ${White}-MMMs  ${Green}./++++++++++++++++++++++++++++++++++++/' ${White}.mMMy
+      ${White}'NMMMy. ${Green}'-/+++++++++++++++++++++++++++++++/:.  ${White}:dMMMo
+       ${White}+MMMMNy:' ${Green}'.:///++++++++++++++++++++//:-.' ${White}./hMMMMN'
+       ${White}-MMMMMMMmy+-.${Green}''''.---::::::::::--..''''${White}.:ohNMMMMMMy
+        ${White}sNMMMMMMMMMmdhs+/:${Green}--..........--${White}:/oyhmNMMMMMMMMMd-
+         ${White}.+dNMMMMMMMMMMMMMMNNmmmmmmmNNNMMMMMMMMMMMMMMmy:'
+            ${White}./sdNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmho:'
+          ${White}'     .:+shmmNNMMMMMMMMMMMMMMMMNNmdyo/-'
+          ${White}.o:.       '.-::/+ossssssso++/:-.'       '-/'
+           ${White}.ymh+-.'                           ''./ydy.
+             ${White}/dMMNdyo/-.''''         ''''.-:+shmMNh:
+               ${White}:yNMMMMMMNmdhhyyyyyyyhhdmNNMMMMMNy:
+                 ${White}':sdNNMMMMMMMMMMMMMMMMMMMNNds:'
+                     ${White}'-/+syhdmNNNNNNmdhyo/-'
 "
 setenforce 0
 sed -i -e 's/^SELINUX=.*/SELINUX=disable/' /etc/sysconfig/selinux
@@ -190,7 +190,7 @@ systemctl disable kdump.service
 systemctl stop kdump.service
 echo -e "Kdump status must be disabled : ${Red} $(systemctl is-enabled kdump)${Reset}"
 echo -e "Selinux status must be permissive : ${Red} $(getenforce)${Reset}\n"
-menu () {                                                                      
+menu () {
 echo -e "                         Installation Menu\n         ${Bold}Guacamole Remote Desktop Gateway ${GUACA_VER}\n" && tput sgr0
 echo -n "${Blue} Enter the root password for ${Menu_SQL}: ${Yellow}"
   read MYSQL_PASSWD
@@ -357,10 +357,10 @@ mkdir -vp ${LIB_DIR}{extensions,lib} >> $logfile  2>&1
 mkdir -v /usr/share/tomcat/.guacamole/ >> $logfile  2>&1
 
 sleep 1 | echo -e "\nDownloading Guacamole packages for installation...\n" | pv -qL 25; echo -e "\nDownloading Guacamole packages for installation...\n" >> $logfile  2>&1
-wget --progress=bar:force ${GUACA_URL}source/${GUACA_SERVER}.tar.gz 2>&1 | progressfilt
+wget --progress=bar:force ${GUACA_URL}source/${GUACA_SERVER}.tar.gz -O ${GUACA_SERVER}.tar.gz 2>&1 | progressfilt
 #wget --progress=bar:force ${GUACA_URL}source/${GUACA_CLIENT}.tar.gz 2>&1 | progressfilt
 wget --progress=bar:force ${GUACA_URL}binary/${GUACA_CLIENT}.war -O ${INSTALL_DIR}client/guacamole.war 2>&1 | progressfilt
-wget --progress=bar:force ${GUACA_URL}extensions/${GUACA_JDBC}.tar.gz 2>&1 | progressfilt
+wget --progress=bar:force ${GUACA_URL}binary/${GUACA_JDBC}.tar.gz -O ${GUACA_JDBC}.tar.gz 2>&1 | progressfilt
 wget --progress=bar:force ${MYSQ_CONNECTOR_URL}${MYSQL_CONNECTOR}.tar.gz 2>&1 | progressfilt
 
 sleep 1 | echo -e "\nDerompessing Guacamole Server Source...\n" | pv -qL 25; echo -e "\nDerompessing Guacamole Server Source...\n" >> $logfile  2>&1
